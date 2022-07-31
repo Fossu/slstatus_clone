@@ -7,7 +7,7 @@ const unsigned int interval = 1000;
 static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
-#define MAXLEN 2048
+#define MAXLEN 99999
 
 /*
  * function            description                     argument (example)
@@ -63,12 +63,16 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+
 static const struct arg args[] = {
 	/* function format          argument */
-	{ temp, "[TEMP %sC] ", "/sys/class/thermal/thermal_zone0/temp" },
-	{ cpu_perc, "[CPU %s%] ", NULL },
-	{ ram_perc, "[RAM %s%] ", NULL },
-	{ battery_perc, "[BAT %s%] ", "BAT0" },
-	{ vol_perc, "[VOL %s%] ", "/dev/mixer" },
-	{ datetime, "%s",           "%F %T" },
+	{ temp, "^C1^  %s糖 ", "/sys/class/thermal/thermal_zone0/temp" },	
+ 	{ battery_perc, "   %s%% ", "BAT0" },
+	{ cpu_perc, "^C3^ ﬙ %s%% ", NULL },
+	{ ram_perc, "  %s%% ", NULL },	
+	/*{ disk_perc, "HD %s%%", "/"    },*/
+	{ vol_perc, "^C6^ 奔 %s%% ", "/dev/mixer" },
+	{ wifi_perc, " 直 %s%% ", "wlp3s0"    },
+	{ datetime, "^C2^  %s", "%F  %T " },
 };
+
